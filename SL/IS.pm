@@ -2518,4 +2518,12 @@ sub get_standard_accno_current_assets {
   return $result;
 }
 
+sub toot {
+  $main::lxdebug->enter_sub();
+
+  $main::lxdebug->message(0, "TOOTOOTOOTOTOOTOOO");
+
+  $main::lxdebug->leave_sub();
+}
+
 1;

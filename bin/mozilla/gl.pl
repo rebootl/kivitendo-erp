@@ -55,6 +55,8 @@ use SL::Presenter::Chart;
 require "bin/mozilla/common.pl";
 require "bin/mozilla/reportgenerator.pl";
 
+use Data::Dumper;
+
 # this is for our long dates
 # $locale->text('January')
 # $locale->text('February')
@@ -800,8 +802,19 @@ sub display_rows {
   }
 
   my %charts_by_id  = map { ($_->{id} => $_) } @{ $::form->{ALL_CHARTS} };
-  my $default_chart = $::form->{ALL_CHARTS}[0];
+  my %charts_by_accno  = map { ($_->{accno} => $_) } @{ $::form->{ALL_CHARTS} };
+
+  # Standard Konto für Umlaufvermögen
+  my $accno_arap = IS->get_standard_accno_current_assets(\%myconfig, \%$form);
+
+  $main::lxdebug->message(0, '$accno_arap: ' . Dumper($accno_arap));
+
+  my $default_chart = $charts_by_accno{$accno_arap} // $::form->{ALL_CHARTS}[0];
   my $transdate     = $::form->{transdate} ? DateTime->from_kivitendo($::form->{transdate}) : DateTime->today_local;
+
+  # debug test
+  #$main::lxdebug->message(0, '$::form->{ALL_CHARTS}: ' . Dumper($::form->{ALL_CHARTS}));
+  $main::lxdebug->message(0, '$default_chart: ' . Dumper($default_chart));
 
   my ($source, $memo, $source_hidden, $memo_hidden);
   for my $i (1 .. $form->{rowcount}) {
