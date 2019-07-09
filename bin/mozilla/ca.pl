@@ -39,6 +39,9 @@ use SL::CA;
 use SL::DB::Default;
 use SL::ReportGenerator;
 
+
+use Data::Dumper;
+
 require "bin/mozilla/reportgenerator.pl";
 
 use strict;
@@ -136,11 +139,20 @@ sub chart_of_accounts {
 
     $row->{accno}->{link} = build_std_url('action=list', 'accno=' . E($ca->{accno}), 'description=' . E($ca->{description}));
 
+    $main::lxdebug->message(0, 'ROWS:' . Dumper($row) );
     $report->add_data($row);
   }
 
+  my $row = { 'accno' => { 'data' => "Alle", 'link' => 'ca.pl?action=list&accno=all' },
+              'description' => { 'data' => "Alle Konten" },
+              'debit' => { 'data' => "" },
+              'credit' => { 'data' => "" },
+            };
+  $report->add_data($row);
+
   my $row = { map { $_ => { 'class' => 'listtotal', 'align' => 'right' } } @columns };
   map { $row->{$_}->{data} = $form->format_amount(\%myconfig, $totals{$_}, 2) } qw(debit credit);
+
 
   $report->add_separator();
   $report->add_data($row);
