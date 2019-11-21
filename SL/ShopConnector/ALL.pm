@@ -3,21 +3,26 @@ package SL::ShopConnector::ALL;
 use strict;
 
 use SL::ShopConnector::Shopware;
+use SL::ShopConnector::VirtueMart;
 
 my %shop_connector_by_name = (
   shopware    => 'SL::ShopConnector::Shopware',
+  virtuemart  => 'SL::ShopConnector::VirtueMart',
 );
 
 my %shop_connector_by_connector = (
-  shopware   => 'SL::ShopConnector::Shopware',
+  shopware    => 'SL::ShopConnector::Shopware',
+  virtuemart  => 'SL::ShopConnector::VirtueMart',
 );
 
 my @shop_connector_order = qw(
   shopware
+  virtuemart
 );
 
 my @shop_connectors = (
   { id => "shopware",   description => "Shopware" },
+  { id => "virtuemart",   description => "VirtueMart" },
 );
 
 
