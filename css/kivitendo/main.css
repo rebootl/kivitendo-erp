@@ -636,3 +636,100 @@ div.filtered_select input {
 div.filtered_select select {
   width: 522px;
 }
+
+
+/* abstract classes (ported from design 4.0)
+
+   dimensions for containers (width)
+   use for DIV, TABLE, TH, TD, COL, P
+
+   standard dimensions */
+--wi-smallest:       42px;  /*   2.6em ; one or two ciphers */
+--wi-verysmall:      80px;  /*   5.0em ; */
+--wi-small:         128px;  /*   8.0em ; also date e.g. 2018/06/06 */
+--wi-mediumsmall:   160px;  /*  10.0em ; */
+--wi-normal:        208px;  /*  13.0em ; */
+--wi-lightwide:     256px;  /*  16.0em ; */
+--wi-wide:          320px;  /*  20.0em ; */
+--wi-wider:         384px;  /*  24.0em ; */
+--wi-verywide:      576px;  /*  36.0em ; */
+
+/* dimensions for form input elements */
+--diff-input-select: 36px;  /*   1.6em ; */
+
+/* div, td, th, col */
+.wi-smallest {
+  width: var(--wi-smallest);
+}
+.wi-verysmall {
+  width: var(--wi-verysmall);
+}
+.wi-small {
+  width: var(--wi-small);
+}
+.wi-mediumsmall {
+  width: var(--wi-mediumsmall);
+}
+.wi-normal {
+  width: var(--wi-normal);
+}
+.wi-lightwide {
+  width: var(--wi-lightwide);
+}
+.wi-wide {
+  width: var(--wi-wide);
+}
+.wi-wider {
+  width: var(--wi-wider);
+}
+.wi-verywide {
+  width: var(--wi-verywide);
+}
+
+/* input */
+/* wi-smallest and wi-verysmall use standard dimensions */
+input[type="text"].wi-small,
+input[type="password"].wi-small {
+  width: calc(var(--wi-small) - var(--diff-input-select));
+}
+input[type="text"].wi-mediumsmall,
+input[type="password"].wi-mediumsmall {
+  width: calc(var(--wi-mediumsmall) - var(--diff-input-select));
+}
+input[type="text"].wi-normal,
+input[type="password"].wi-normal {
+  width: calc(var(--wi-normal) - var(--diff-input-select));
+}
+input[type="text"].wi-lightwide,
+input[type="password"].wi-lightwide {
+  width: calc(var(--wi-lightwide) - var(--diff-input-select));
+}
+input[type="text"].wi-wide,
+input[type="password"].wi-wide {
+  width: calc(var(--wi-wide) - var(--diff-input-select));
+}
+input[type="text"].wi-wider,
+input[type="password"].wi-wider {
+  min-width: calc(var(--wi-wider) - var(--diff-input-select));
+}
+input[type="text"].wi-verywide,
+input[type="password"].wi-verywide {
+  min-width: calc(var(--wi-verywide) - var(--diff-input-select));
+}
+/* data types */
+input[type="text"].wi-date,
+input[type="password"].wi-date {
+  width: calc(var(--wi-small) - var(--diff-input-select));
+}
+input[type="text"].wi-number,
+input[type="password"].wi-number {
+  width: calc(var(--wi-small) - var(--diff-input-select));
+}
+input[type="text"].wi-tinynumber,
+input[type="password"].wi-tinynumber {
+  width: var(--wi-verysmall);
+}
+input[type="text"].wi-largenumber,
+input[type="password"].wi-largenumber {
+  width: var(--wi-mediumsmall);
+}
