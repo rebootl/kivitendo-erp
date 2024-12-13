@@ -177,7 +177,12 @@ sub get_stylesheet_for_user {
 ########################################
 
 # override in sub layouts
-sub static_javascripts {}
+sub static_javascripts {
+  if ($::lx_office_conf{devel}->{hot_reload}) {
+    return 'hotreload.js';
+  }
+  return;
+}
 
 sub add_javascripts {
   &use_javascript
